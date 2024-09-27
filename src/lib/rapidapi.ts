@@ -1,19 +1,19 @@
-const RAPIDAPI_KEY = process.env.TASTY_API_KEY;
-const TASTY_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
+import { RecipeAPIResponse } from "@/types/recipe";
 
-export const fetchRandomRecipes = async (count = 5) => {
-  const response = await fetch(`${TASTY_URL}`, {
+const EDAMAM_SEARCH_URL = 'https://api.edamam.com/api/recipes/v2?type=public';
+const APP_ID = process.env.EDAMAM_APP_ID;
+const API_KEY = process.env.EDAMAM_API_KEY;
+
+export const fetchRecipesByQuery = async (query: string) => {
+  const url = `${EDAMAM_SEARCH_URL}&q=${query}&app_id=${APP_ID}&app_key=${API_KEY}`;
+  const response = await fetch(url, {
     method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': RAPIDAPI_KEY as string,
-      'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
-    },
   });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch recipes');
+    throw new Error('Failed to fetch recipes from Edamam');
   }
 
   const data = await response.json();
-  return data.results;
+  return data as RecipeAPIResponse;
 };

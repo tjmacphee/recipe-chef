@@ -1,13 +1,27 @@
-export interface Recipe {
-    id: number;
-    name: string;
-    description: string;
-    thumbnail_url: string;
-    video_url: string;
-    servings_noun_plural: string;
-    servings_noun_singular: string;
-    num_servings: number;
-    instructions: string;
-    total_time_minutes: number;
-  }
-  
+// Define the structure for the images
+type RecipeImage = {
+  url: string;
+  width: number;
+  height: number;
+};
+
+// Define the main recipe type
+export type Recipe = {
+  uri: string;
+  id: string;
+  label: string;
+  image: string; // Main image URL
+  url: string;
+  images: {
+    THUMBNAIL?: RecipeImage;
+    SMALL?: RecipeImage;
+    REGULAR?: RecipeImage;
+  };
+};
+
+// Define the structure of the API response
+export type RecipeAPIResponse = {
+  hits: {
+    recipe: Recipe;
+  }[];
+};

@@ -1,45 +1,20 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { fetchRandomRecipes } from '@/lib/rapidapi';
-import RecipeCard from './recipes/components/RecipeCard';
-import { Recipe } from '@/types/recipe';
+import React from 'react';
+import SearchBar from './home/components/SearchBar';
 
-const RecipePage = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<null | string>(null);
-
-  useEffect(() => {
-    const getRecipes = async () => {
-      try {
-        const recipeData = await fetchRandomRecipes(5);
-        setRecipes(recipeData);
-      } catch (err) {
-        setError('Failed to load recipes');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getRecipes();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
+const HomePage = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+      <header className="py-10">
+        <h1 className="text-5xl font-bold text-gray-800">Recipe Chef</h1>
+        <p className="mt-4 text-lg text-gray-500">Find the perfect recipe by ingredient, nutrition, and more!</p>
+      </header>
+      <main className="w-full max-w-md">
+        <SearchBar />
+      </main>
     </div>
   );
 };
 
-export default RecipePage;
+export default HomePage;
