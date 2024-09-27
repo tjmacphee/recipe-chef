@@ -8,7 +8,6 @@ const SearchBar: React.FC = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
-      // Navigate to the search results page, passing the query as a parameter
       router.push(`/search?query=${encodeURIComponent(query)}`);
     }
   };
@@ -20,11 +19,11 @@ const SearchBar: React.FC = () => {
         placeholder="Search recipes by ingredient or nutrition..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="p-2 w-full border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="p-3 w-full border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400 leading-[1.4rem]"
       />
       <button
         type="submit"
-        className="p-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
+        className="p-3 bg-gradient-to-r from-[#009243] to-[#005d32] text-white rounded-r-full hover:bg-[#007f39] transition duration-200 border-none"
       >
         Search
       </button>

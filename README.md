@@ -12,7 +12,7 @@ Second, create a `.env` file in root based on the [`.env_example`](/.env_example
 cp .env_example .env
 ```
 
-Third, signup for [Edamam](https://www.edamam.com/) to obtain your ID & key, then fill in the `.env` values.
+Third, signup for [Spoonacular](https://spoonacular.com/food-api) to obtain your key, then fill in the `.env` values.
 
 Fourth, run the development server:
 

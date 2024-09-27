@@ -28,3 +28,96 @@ body {
   background-color: #f7fafc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* styles/globals.css */
+
+body {
+  overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+@keyframes dot-animation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dot-move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(20px, 20px); /* Increased movement */
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0); 
+    opacity: 0; /* Fade out at the end of the path */
+  }
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 146, 67, 0.3); /* Light green */
+  animation: dot-animation 2s infinite, dot-move 4s infinite; /* Combined animations */
+}
+
+/* Add more dot styles */
+.dot:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  top: 40%;
+  left: 30%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 0.5s;
+}
+
+.dot:nth-child(3) {
+  top: 70%;
+  left: 60%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 1s;
+}
+
+.dot:nth-child(4) {
+  top: 20%;
+  left: 70%;
+  width: 18px;
+  height: 18px;
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(5) {
+  top: 50%;
+  left: 10%;
+  width: 12px;
+  height: 12px;
+  animation-delay: 0.7s;
+}
+
+.dot:nth-child(6) {
+  top: 80%;
+  left: 30%;
+  width: 22px;
+  height: 22px;
+  animation-delay: 1.3s;
+}
+
