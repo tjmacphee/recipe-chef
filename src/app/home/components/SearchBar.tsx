@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-const SearchBar: React.FC = () => {
-  const [query, setQuery] = useState('');
+interface SearchBarProps {
+  initialQuery?: string;  // Accept an optional initial query
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = '' }) => {
+  const [query, setQuery] = useState(initialQuery);
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -11,6 +17,11 @@ const SearchBar: React.FC = () => {
       router.push(`/search?query=${encodeURIComponent(query)}`);
     }
   };
+
+  // Update the query state when the initialQuery prop changes
+  useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
 
   return (
     <form onSubmit={handleSearch} className="flex items-center justify-center w-full">

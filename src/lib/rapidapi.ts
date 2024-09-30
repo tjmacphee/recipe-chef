@@ -1,6 +1,6 @@
 import { RecipeAPIResponse } from "@/types/recipe";
 
-const SPOONACULAR_SEARCH_URL = 'https://api.spoonacular.com/recipes/complexSearch?number=3';
+const SPOONACULAR_SEARCH_URL = 'https://api.spoonacular.com/recipes/complexSearch?number=10';
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY as string;
 
 export const fetchRecipesByQuery = async (query: string) => {

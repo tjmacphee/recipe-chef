@@ -1,34 +1,46 @@
-// /app/search/page.tsx
-import React from 'react';
-import { fetchRecipesByQuery } from '@/lib/rapidapi';
+"use client";
+
+import React, { useState } from 'react';
 import RecipeCard from '../home/components/RecipeCard';
-import { RecipeAPIResponse, Recipe } from '@/types/recipe';
+import SearchBar from '../home/components/SearchBar';
+import { Recipe } from '@/types/recipe';
 
-const SearchPage = async ({ searchParams }: { searchParams: { query: string } }) => {
-  const query = searchParams.query;
-  let recipes: Recipe[] = [];
+interface SearchResultsProps {
+  initialRecipes: Recipe[];
+  query: string;
+}
 
-  try {
-    const response: RecipeAPIResponse = await fetchRecipesByQuery(query);
+const SearchResults: React.FC<SearchResultsProps> = ({ initialRecipes, query }) => {
+  const [recipes, setRecipes] = useState<Recipe[]>(initialRecipes);
+  const [imageErrorIds, setImageErrorIds] = useState<number[]>([]);
 
-    recipes = response.results.map((recipe) => {
-      return {
-        ...recipe,
-      };
-    });
-  } catch (error) {
-    console.error('Error fetching recipes:', error);
-  }
+  // Callback to handle image load errors
+  const handleImageError = (id: number) => {
+    setImageErrorIds((prev) => [...prev, id]);
+  };
+
+  // Filter out recipes with image load errors
+  const filteredRecipes = recipes.filter(recipe => !imageErrorIds.includes(recipe.id));
 
   return (
     <div className="min-h-screen p-8">
-      <h1 className="text-3xl font-bold mb-8">Search Results</h1>
-      {recipes.length === 0 ? (
+      {/* Flex container to align the header and search bar horizontally */}
+      <div className="flex items-center pb-8">
+        <h1 className="text-3xl font-bold px-4">Search Results</h1>
+        {/* Search bar aligned to the right of the header */}
+        <div className="w-full max-w-6xl z-10"> {/* Adjust the width of the search bar */}
+          <SearchBar initialQuery={query} />
+        </div>
+      </div>
+
+      {filteredRecipes.length === 0 ? (
         <p className="text-xl">No recipes found. Please try a different search query.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {recipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+        <div className="flex flex-wrap">
+          {filteredRecipes.map((recipe) => (
+            <div key={recipe.id} className="w-1/4 p-2 flex-grow-0 max-w-[25%]">
+              <RecipeCard recipe={recipe} onError={() => handleImageError(recipe.id)} />
+            </div>
           ))}
         </div>
       )}
@@ -36,4 +48,4 @@ const SearchPage = async ({ searchParams }: { searchParams: { query: string } })
   );
 };
 
-export default SearchPage;
+export default SearchResults;
