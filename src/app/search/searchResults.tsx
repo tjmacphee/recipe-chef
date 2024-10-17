@@ -11,7 +11,7 @@ interface SearchResultsProps {
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({ initialRecipes, query }) => {
-  const [recipes, setRecipes] = useState<Recipe[]>(initialRecipes);
+  const [recipes] = useState<Recipe[]>(initialRecipes);
   const [imageErrorIds, setImageErrorIds] = useState<number[]>([]);
 
   // Callback to handle image load errors
