@@ -2,6 +2,7 @@
 
 import React from 'react';
 import SearchBar from './home/components/SearchBar';
+import Logo from './home/components/logo';
 
 const HomePage = () => {
   return (
@@ -16,8 +17,13 @@ const HomePage = () => {
         {/* Main content */}
         <div className="relative m-8 space-y-4 z-10">
           {/* Header section */}
-          <header className="py-4 text-left">
-            <h1 className="text-5xl font-bold text-gray-800">Recipe Chef</h1>
+          <header className="p-2 text-left">
+            <div className="flex items-center space-x-4">
+              <h1 className="text-5xl font-bold text-gray-800 flex items-center gap-6">
+                Recipe Chef
+                <Logo />
+              </h1>
+            </div>
             <p className="mt-4 text-lg text-gray-500">Find the perfect recipe by ingredient, nutrition, and more!</p>
           </header>
 
