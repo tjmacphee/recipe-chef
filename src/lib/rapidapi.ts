@@ -1,19 +1,19 @@
-const RAPIDAPI_KEY = process.env.TASTY_API_KEY;
-const TASTY_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
+import { RecipeAPIResponse } from "@/types/recipe";
 
-export const fetchRandomRecipes = async (count = 5) => {
-  const response = await fetch(`${TASTY_URL}`, {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': RAPIDAPI_KEY as string,
-      'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
-    },
+const SPOONACULAR_SEARCH_URL = 'https://api.spoonacular.com/recipes/complexSearch?number=10';
+const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY as string;
+
+export const fetchRecipesByQuery = async (query: string) => {
+  const url = `${SPOONACULAR_SEARCH_URL}&query=${query}&apiKey=${SPOONACULAR_API_KEY}`;
+  const response = await fetch(url, {
+    method: 'GET'
   });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch recipes');
+    console.log(await response.json());
+    throw new Error('Failed to fetch recipes from Spoonacular');
   }
 
   const data = await response.json();
-  return data.results;
+  return data as RecipeAPIResponse;
 };
