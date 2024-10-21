@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import SearchBar from './home/components/SearchBar';
 import Logo from './home/components/logo';
 
@@ -19,10 +20,12 @@ const HomePage = () => {
           {/* Header section */}
           <header className="p-2 text-left">
             <div className="flex items-center space-x-4">
-              <h1 className="text-5xl font-bold text-gray-800 flex items-center gap-6">
-                Recipe Chef
-                <Logo />
-              </h1>
+              <Link href={`/`}>
+                <h1 className="text-5xl font-bold text-gray-800 flex items-center gap-6">
+                  Recipe Chef
+                  <Logo />
+                </h1>
+              </Link>
             </div>
             <p className="mt-4 text-lg text-gray-500">Find the perfect recipe by ingredient, nutrition, and more!</p>
           </header>

@@ -1,7 +1,5 @@
-"use client";
-
+// src/app/home/components/SearchBar.tsx
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 interface SearchBarProps {
   initialQuery?: string;  // Accept an optional initial query
@@ -9,14 +7,6 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = '' }) => {
   const [query, setQuery] = useState(initialQuery);
-  const router = useRouter();
-
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (query.trim()) {
-      router.push(`/search?query=${encodeURIComponent(query)}`);
-    }
-  };
 
   // Update the query state when the initialQuery prop changes
   useEffect(() => {
@@ -24,10 +14,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = '' }) => {
   }, [initialQuery]);
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center justify-center w-full">
+    <form action="/search" method="GET" className="flex items-center justify-center w-full">
       <input
         type="text"
-        placeholder="Search recipes by ingredient or nutrition..."
+        name="query"
+        placeholder="Search recipes by cuisine or diet..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="p-3 w-full border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400 leading-[1.4rem]"

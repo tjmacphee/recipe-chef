@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import RecipeCard from '../home/components/RecipeCard';
 import SearchBar from '../home/components/SearchBar';
+import Logo from '../home/components/logo';
 import { Recipe } from '@/types/recipe';
 
 interface SearchResultsProps {
@@ -25,6 +27,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({ initialRecipes, query }) 
   return (
     <div className="min-h-screen p-8">
       {/* Flex container to align the header and search bar horizontally */}
+        <div className="flex items-center space-x-4 px-4 pb-12">
+          <Link href={`/`}>
+            <h2 className="text-5xl font-bold text-gray-800 flex items-center gap-6">
+              Recipe Chef
+              <Logo />
+            </h2>
+          </Link>
+        </div>
       <div className="flex items-center pb-8">
         <h1 className="text-3xl font-bold px-4">Search Results</h1>
         {/* Search bar aligned to the right of the header */}
@@ -38,7 +48,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ initialRecipes, query }) 
       ) : (
         <div className="flex flex-wrap">
           {filteredRecipes.map((recipe) => (
-            <div key={recipe.id} className="w-1/4 p-2 flex-grow-0 max-w-[25%]">
+            <div key={recipe.id} className="w-1/4 p-2 flex-grow-0 max-w-[20%]">
               <RecipeCard recipe={recipe} onError={() => handleImageError(recipe.id)} />
             </div>
           ))}

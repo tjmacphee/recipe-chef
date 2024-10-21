@@ -43,10 +43,13 @@ body {
   font-weight: 600;
 }
 
-/* styles/globals.css */
-
 body {
   overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+span.clock svg {
+  display: inline;
+  vertical-align: sub;
 }
 
 /* Blob animation */

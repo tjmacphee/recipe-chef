@@ -1,7 +1,14 @@
 // next.config.mjs
 
+import { hostname } from "os";
+
 export default {
     images: {
-        domains: ['img.spoonacular.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'img.spoonacular.com',
+            },
+        ],
     },
 };
