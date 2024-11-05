@@ -26,7 +26,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ initialRecipes, query }) 
 
   return (
     <div className="min-h-screen p-8">
-      {/* Flex container to align the header and search bar horizontally */}
         <div className="flex items-center space-x-4 px-4 pb-12">
           <Link href={`/`}>
             <h2 className="text-5xl font-bold text-gray-800 flex items-center gap-6">
@@ -37,8 +36,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ initialRecipes, query }) 
         </div>
       <div className="flex items-center pb-8">
         <h1 className="text-3xl font-bold px-4">Search Results</h1>
-        {/* Search bar aligned to the right of the header */}
-        <div className="w-full max-w-6xl z-10"> {/* Adjust the width of the search bar */}
+        <div className="w-full max-w-6xl z-10">
           <SearchBar initialQuery={query} />
         </div>
       </div>

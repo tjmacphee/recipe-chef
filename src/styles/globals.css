@@ -44,7 +44,7 @@ body {
 }
 
 body {
-  overflow: hidden; /* Prevent scrollbars from appearing */
+  overflow: hidden;
 }
 
 span.clock svg {

@@ -8,7 +8,6 @@ import Logo from './home/components/logo';
 const HomePage = () => {
   return (
     <div className="bg-gray-50 min-h-screen flex items-center justify-center px-16">
-      {/* Container for main content and blobs */}
       <div className="relative w-full max-w-6xl">
         {/* Blurry animated shapes */}
         <div className="absolute top-0 -left-4 w-72 h-72 bg-[#b3ffd6] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
